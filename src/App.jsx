@@ -12,7 +12,7 @@ function App() {
 
   return (
 
-    <div className='min-h-screen w-full bg-gray-900 text-white p-10'>
+    <div className='min-h-screen w-full bg-gray-900 text-green p-10'>
       <div className='max-w-2xl mx-auto'>
         {accordionData && accordionData.length > 0 ? (
           <div className='flex flex-col gap-1.5'>{accordionData.map((item) => (
