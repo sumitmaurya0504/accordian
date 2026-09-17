@@ -8,7 +8,7 @@ function App() {
   const [multiple, setMultiple] = useState([])
 
   function handleSingleSelection(getCurrentId) {
-    console.log(getCurrentId)
+    // console.log(getCurrentId)
     setSelected(selected === getCurrentId ? null : getCurrentId)
   }
 
@@ -16,8 +16,11 @@ function App() {
     let cpyMultiple = [...multiple]
     const findIndexOfCurrentId = cpyMultiple.indexOf(getCurrentId)
 
-    console.log(findIndexOfCurrentId)
-    
+    // console.log(findIndexOfCurrentId)
+    if(findIndexOfCurrentId === -1)cpyMultiple.push(getCurrentId)
+      else cpyMultiple.splice(findIndexOfCurrentId, 1)
+
+    setMultiple(cpyMultiple)
   }
 
   return (
@@ -42,10 +45,17 @@ function App() {
                   <h3>{item.title}</h3>
                   {selected === item.id ? (<span>-</span>) : (<span>+</span>)}
                 </div>
-                {selected === item.id ? (
+                {
+                  enableMultiSelection ? multiple.indexOf(item.id) !== -1 &&
+                  (<div className='pb-4 px-4'>{item.content}</div>)
+                  : selected === item.id && (
+                  <div className='pb-4 px-4'>{item.content}</div>
+                ) 
+                }
+                {/* {selected === item.id ? (
                   <div className='pb-4 px-4'>{item.content}</div>
                 ) : null
-                }
+                } */}
               </div>
 
             </div>
